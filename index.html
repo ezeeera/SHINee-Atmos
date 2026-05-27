@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>SHINee Atmos</title>
+
+<style>
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: mintcream;
+
+    background-image: url("atmos.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+body::before{
+    content: "";
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.55);
+    z-index: -1;
+}
+
+header{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+
+.main-title{
+    transition: 0.3s;
+}
+.main-title:hover{
+    text-shadow: 0px 8px 20px rgba(0,0,0,0.9);
+}
+
+
+.subtitle{
+    font-size: 14px;
+}
+
+
+#menubar ul{
+    padding: 0;
+}
+#menubar ul li{
+    display: inline-block;
+    margin: 0 15px;
+}
+#menubar ul li a{
+    text-decoration: none;
+    color: mintcream;
+}
+#menubar ul li a:hover{
+    color: paleturquoise;
+}
+
+
+.main-image{
+    width: 70%;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.6);
+}
+
+
+article{
+    margin-top: 80px;
+}
+
+
+.section-title{
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+
+
+.group-photo img{
+    transition:0.3s;
+    cursor:pointer;
+}
+.group-photo img:hover{
+    transform:scale(1.03);
+}
+
+
+.member-box img{
+    width: 170px;
+    margin: 5px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.member-box img:hover{
+    transform: scale(1.05);
+}
+.member-box{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+}
+.member-box p{
+    margin-top:8px;
+    font-size:14px;
+}
+#memberPhotos{
+    width:80%;
+    text-align:center;
+}
+#memberPhotos img{
+    width:180px;
+    margin:8px;
+}
+
+
+.prismic-image img{
+    width:250px;
+    cursor:pointer;
+    transition:0.3s;
+}
+.prismic-image img:hover{
+    transform:scale(1.03);
+}
+
+
+.schedule p{
+    margin: 10px;
+    padding: 8px;
+    transition: 0.3s;
+}
+.schedule p:hover{
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 8px;
+}
+.schedule a{
+    color: mintcream;
+    text-decoration: none;
+    display: block;
+}
+.schedule a:hover{
+    color: lightblue;
+}
+
+
+.teaser p{
+    margin: 10px;
+    padding: 8px;
+    transition: 0.3s;
+}
+.teaser p:hover{
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 8px;
+}
+.teaser a{
+    color: mintcream;
+    text-decoration: none;
+    display: block;
+}
+.teaser a:hover{
+    color: lightblue;
+}
+
+
+.album-box img{
+    width: 200px;
+    margin: 5px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.album-box img:hover{
+    transform: scale(1.05);
+}
+
+.prismic-image{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:10px;
+    justify-items:center;
+    align-items:center;
+}
+.prismic-image img{
+    width:250px;
+    transition:0.3s;
+    cursor:pointer;
+}
+.prismic-image img:hover{
+    transform:scale(1.03);
+}
+
+.tracklist{
+    margin-top: 40px;
+}
+.tracklist details{
+    margin: 10px auto;
+    width: 60%;
+    text-align: left;
+    cursor: pointer;
+}
+.tracklist summary{
+    padding: 10px;
+    font-weight: bold;
+    background: rgba(255,255,255,0.08);
+    border-radius: 6px;
+}
+.tracklist summary:hover{
+    color: paleturquoise;
+}
+.tracklist p{
+    margin: 10px;
+    padding: 10px;
+    color: #ddd;
+}
+
+
+footer{
+    margin-top: 80px;
+    margin-bottom: 40px;
+}
+footer a{
+    text-decoration: none;
+    color: lightblue;
+    margin: 0 10px;
+}
+footer a:hover{
+    color: paleturquoise;
+}
+
+
+.modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    justify-content:center;
+    align-items:center;
+    background-color : rgba(0,0,0,0.85);
+    z-index:999;
+
+    overflow-y:auto;
+    padding:30px 0;
+}
+.modal img{
+    max-width:80%;
+    max-height:80%;
+}
+
+
+#memberPhotos{
+    width: 80%;
+    text-align:center;
+}
+#memberPhotos img{
+    width:180px;
+    margin:8px;
+    transition:0.3s;
+}
+#memberPhotos img:hover{
+    transform:scale(1.03);
+}
+
+</style>
+</head>
+
+
+<body>
+
+<header>
+    <h1 class="main-title">Atmos</h1>
+    <p class="subtitle">SHINee 6th Mini Album</p>
+</header>
+
+<nav id="menubar">
+    <ul>
+        <li><a href="#tracklist">Atmos</a></li>
+        <li><a href="#schedule">Schedule</a></li>
+        <li><a href="#shinee">SHINee</a></li>
+        <li><a href="#album">Album Preview</a></li>
+        <li><a href="#teaser">Teaser</a></li>
+    </ul>
+</nav>
+
+<article>
+    <img src="shinee 6.jpg" class="main-image">
+    <h4>샤이니의 미니앨범 'Atmos'는 사랑을 둘러싼 여러 감정을 담은 신곡들을 선보인다.</h4>
+    <h4>앨범은 서로 다른 정서를 지닌 곡들을 한데 묶어, 사랑의 추억과 현재, 다가올 시간까지 아우르는 흐름을 노래한다.</h4>
+    <h4>각 트랙은 사랑의 낭만, 갑작스러운 설렘, 오래 남는 기억 등을 다른 장르와 분위기로 풀어내며, 샤이니 특유의 음악적 색채를 이어나간다.</h4>
+
+    <div class="tracklist" id="tracklist">
+        <h3>Track List</h3>
+        <details>
+            <summary>Atmos</summary>
+            <p>상대방과 함께하는 순간을 공기를 유영하듯 가볍게 떠오르는 공간과 분위기로 표현한 이번 앨범의 타이틀곡이다. 몽환적이면서도 청량한 분위기를 선사한다.</p>
+        </details>
+        <details>
+            <summary>HOURS</summary>
+            <p>세련된 디스코 감성을 더한 펑크 팝 장르의 곡이다. 그루비한 베이스 라인과 하프타임 리듬이 어우러져 신선한 분위기를 자아내며, 지나간 추억부터 앞으로 함께할 시간까지 모두 건네고 싶은 사랑의 마음을 담아냈다.</p>
+        </details>
+        <details>
+            <summary>Possibility</summary>
+            <p>UK 개러지 기반의 리듬 위에 얼터너티브 록 기타 사운드를 더한 일렉트로닉 팝 곡으로, 점점 고조되는 에너지가 곡의 몰입도를 높이며, 두려움 속에서도 자신의 가능성을 믿고 계속해서 나아가려는 의지가 담긴 곡이다.</p>
+        </details>
+        <details>
+            <summary>Anti Believer</summary>
+            <p>귓가에 맴도는 키보드 샘플과 무게감 있는 베이스가 몽환적이고 차가운 무드를 자아내는 일렉트로닉 팝 장르의 곡이다. 의심과 상처로 혼란을 겪는 내면의 균열을 그려냈다.</p>
+        </details>
+        <details>
+            <summary>소나기 (Still Raining)</summary>
+            <p>플럭 신스와 여유로운 리듬 악기가 조화를 이루는 몽환적인 분위기의 R&B 팝 곡이다. 갑작스럽게 찾아온 설렘과 짧지만 오래도록 남는 기억을 소나기에 빗대어 표현한다.</p>
+        </details>
+        <details>
+            <summary>Thousand Miles Away</summary>
+            <p>감성적인 스트링과 극적인 드럼이 만나 서정적이고 웅장한 사운드를 만들어낸 미드템포 발라드 곡이다. 지나온 날들의 모든 순간이 의미 있는 흔적을 남겼음을 깨닫고 더 아름다운 미래를 꿈꾸는 희망적인 메시지를 전하는 곡이다.</p>
+        </details>
+    </div>
+</article>
+
+<article id="schedule">
+    <h2 class="section-title">Schedule</h2>
+    <div class="schedule">
+        <p><a href="#shinee"><span style="font-size:0.8em">05.26 </span> PERSONAL TEASER</a></p>
+        <p><a href="#shinee"><span style="font-size:0.8em">05.26 </span> GROUP TEASER</a></p>
+        <p><a href="https://youtu.be/Tp0KvuHifsw" target="_blank"><span style="font-size:0.8em">05.27 </span> MOOD SAMPLER</a></p>
+        <p><a href="#prismicimage"><span style="font-size:0.8em">05.28 </span> PRISMIC ATMOS IMAGE</a></p>
+        <p><span style="font-size:0.8em">05.29 </span> MV TEASER</p>
+        <p><a href="https://shinee.lnk.to/Atmos" target="_blank"><span style="font-size:0.8em">06.01 </span> ALBUM RELEASE</a></p>
+    </div>
+</article>
+
+<article id="shinee">
+    <h2 class="section-title">SHINee</h2>
+    <div class="group-photo">
+        <img src="단체1.jpeg" width="300" onclick="openModal(this)">
+        <img src="단체2.jpeg" height="200" onclick="openModal(this)">
+        <img src="단체3.jpeg" height="200" onclick="openModal(this)">
+        <img src="단체6.jpeg" height="200" onclick="openModal(this)">
+        <img src="단체4.jpeg" width="300" onclick="openModal(this)">
+        <img src="단체5.jpeg" width="300" onclick="openModal(this)">
+    </div>
+
+    <br>
+
+<div class="member-box">
+    <div>
+        <img src="o1.jpeg" height="250"
+        onclick="document.getElementById('onewModal').style.display='flex'">
+        <p>ONEW</p>
+    </div>
+    <div>
+        <img src="k1.jpeg" height="250"
+        onclick="document.getElementById('keyModal').style.display='flex'">
+        <p>KEY</p>
+    </div>
+    <div>
+        <img src="mh1.jpeg" height="250"
+        onclick="document.getElementById('minhoModal').style.display='flex'">
+        <p>MINHO</p>
+    </div>
+    <div>
+        <img src="tm1.jpeg" height="250"
+        onclick="document.getElementById('taeminModal').style.display='flex'">
+        <p>TAEMIN</p>
+    </div>
+</div>
+
+<div class="modal" id="onewModal"
+onclick="document.getElementById('onewModal').style.display='none'">
+
+    <div id="memberPhotos">
+        <img src="o1.jpeg">
+        <img src="o2.jpeg">
+        <img src="o3.jpeg">
+        <img src="o4.jpeg">
+        <img src="o5.jpeg">
+        <img src="o6.jpeg">
+        <img src="o7.jpeg">
+        <img src="o8.jpeg">
+        <img src="o9.jpeg">
+        <img src="o10.jpeg">
+    </div>
+</div>
+
+<div class="modal" id="keyModal"
+onclick="document.getElementById('keyModal').style.display='none'">
+    <div id="memberPhotos">
+        <img src="k1.jpeg">
+        <img src="k2.jpeg">
+        <img src="k3.jpeg">
+        <img src="k4.jpeg">
+        <img src="k5.jpeg">
+        <img src="k6.jpeg">
+        <img src="k7.jpeg">
+        <img src="k8.jpeg">
+        <img src="k9.jpeg">
+        <img src="k10.jpeg">
+    </div>
+</div>
+
+<div class="modal" id="minhoModal"
+onclick="document.getElementById('minhoModal').style.display='none'">
+    <div id="memberPhotos">
+        <img src="mh1.jpeg">
+        <img src="mh2.jpeg">
+        <img src="mh3.jpeg">
+        <img src="mh4.jpeg">
+        <img src="mh5.jpeg">
+        <img src="mh6.jpeg">
+        <img src="mh7.jpeg">
+        <img src="mh8.jpeg">
+        <img src="mh9.jpeg">
+        <img src="mh10.jpeg">
+    </div>
+</div>
+ 
+<div class="modal" id="taeminModal"
+onclick="document.getElementById('taeminModal').style.display='none'">
+    <div id="memberPhotos">
+        <img src="tm1.jpeg">
+        <img src="tm2.jpeg">
+        <img src="tm3.jpeg">
+        <img src="tm4.jpeg">
+        <img src="tm5.jpeg">
+        <img src="tm6.jpeg">
+        <img src="tm7.jpeg">
+        <img src="tm8.jpeg">
+        <img src="tm9.jpeg">
+        <img src="tm10.jpeg">
+    </div>
+</div>
+
+<article id="prismicimage">
+    <div class="member-box">
+        <div>
+            <img src="pr4.jpeg" height="210"
+            onclick="document.getElementById('prismicModal').style.display='flex'">
+        </div>
+        <div>
+            <img src="pr41.jpeg" height="210"
+            onclick="document.getElementById('pronewModal').style.display='flex'">
+        </div>
+        <div>
+            <img src="pr31.jpeg" height="210"
+            onclick="document.getElementById('prkeyModal').style.display='flex'">
+        </div>
+        <div>
+            <img src="pr20.jpeg" height="210"
+            onclick="document.getElementById('prmhModal').style.display='flex'">
+        </div>
+        <div>
+            <img src="pr7.jpeg" height="210"
+            onclick="document.getElementById('prtmModal').style.display='flex'">
+        </div>
+    </div>
+</article>
+
+
+
+<div class="modal" id="prismicModal"
+onclick="document.getElementById('prismicModal').style.display='none'">
+    <div id="memberPhotos">
+        <img src="pr1.jpeg">
+        <img src="pr2.jpeg">
+        <img src="pr3.jpeg">
+        <img src="pr4.jpeg">
+        <img src="pr5.jpeg">
+    </div>
+</div>
+
+<div class="modal" id="pronewModal"
+onclick="document.getElementById('pronewModal').style.display='none'">
+    <div id="memberPhotos">
+        <img src="pr35.jpeg">
+        <img src="pr36.jpeg">
+        <img src="pr37.jpeg">
+        <img src="pr38.jpeg">
+        <img src="pr39.jpeg">
+        <img src="pr40.jpeg">
+        <img src="pr41.jpeg">
+        <img src="pr42.jpeg">
+    </div>
+</div>
+
+<div class="modal" id="prkeyModal"
+onclick="document.getElementById('prkeyModal').style.display='none'">
+    <div id="memberPhotos">
+        <img src="pr25.jpeg">
+        <img src="pr26.jpeg">
+        <img src="pr27.jpeg">
+        <img src="pr28.jpeg">
+        <img src="pr29.jpeg">
+        <img src="pr30.jpeg">
+        <img src="pr31.jpeg">
+        <img src="pr32.jpeg">
+        <img src="pr33.jpeg">
+        <img src="pr34.jpeg">
+    </div>
+</div>
+
+<div class="modal" id="prmhModal"
+onclick="document.getElementById('prmhModal').style.display='none'">
+
+    <div id="memberPhotos">
+
+        <img src="pr15.jpeg">
+        <img src="pr16.jpeg">
+        <img src="pr17.jpeg">
+        <img src="pr18.jpeg">
+        <img src="pr19.jpeg">
+        <img src="pr20.jpeg">
+        <img src="pr21.jpeg">
+        <img src="pr22.jpeg">
+        <img src="pr23.jpeg">
+    </div>
+</div>
+
+<div class="modal" id="prtmModal"
+onclick="document.getElementById('prtmModal').style.display='none'">
+    <div id="memberPhotos">
+        <img src="pr6.jpeg">
+        <img src="pr7.jpeg">
+        <img src="pr8.jpeg">
+        <img src="pr9.jpeg">
+        <img src="pr10.jpeg">
+        <img src="pr11.jpeg">
+        <img src="pr12.jpeg">
+        <img src="pr13.jpeg">
+        <img src="pr14.jpeg">
+    </div>
+
+</div>
+</div>
+<article id="album">
+    <h3 class="section-title">Album Preview</h3>
+    <div class="album-box">
+        <img src="ap1.jpg" onclick="openModal(this)">
+        <img src="ap2.jpg" onclick="openModal(this)">
+        <img src="ap3.jpg" onclick="openModal(this)">
+        <img src="ap4.jpg" onclick="openModal(this)">
+    </div>
+</article>
+<article id="teaser">
+    <h2 class="section-title">Teaser</h2>
+    <div class="teaser">
+        <p><a href="https://pin.it/6jw6372YC">Pinterest</a></p>
+        <p><a href="https://youtu.be/xEjd_k-dB2w?si=BIABYDrZcIYnuWfK" target="_blank">SHINee 'Atmos' Schedule Film | ATMOS WEATHER</a></p>
+        <p><a href="https://youtu.be/Tp0KvuHifsw">Mood Sampler</a></p>
+        <p><a href="#shinee">Rain Ceremony Teaser Image</a></p>
+        <p><a href="#prismicimage">Prismic Atmos Teaser Image</a></p>
+        <p>MV Teaser</p>
+    </div>
+</article>
+
+<footer>
+    <a href="https://www.youtube.com/@SHINee">Youtube</a>
+    <a href="https://www.instagram.com/shinee">Instagram</a>
+    <a href="https://x.com/SHINee?s=20">X</a>
+    <a href="https://weverse.io/shinee/media">Weverse</a>
+    <p>SHINee Atmos</p>
+    <hr>
+    <p style="font-size:12px; color:gray;">
+        이미지 출처: SM Entertainment / SHINee 공식 콘텐츠 / Weverse / YouTube / Pinterest
+    </p></footer>
+
+<div class="modal" id="modal" onclick="closeModal()">
+
+    <img id="modalImg">
+
+</div>
+
+<script>
+
+function openModal(img){
+
+    document.getElementById("modal").style.display = "flex";
+
+    document.getElementById("modalImg").src = img.src;
+}
+
+function closeModal(){
+
+    document.getElementById("modal").style.display = "none";
+}
+
+</script>
+
+</body>
+
+</html>
